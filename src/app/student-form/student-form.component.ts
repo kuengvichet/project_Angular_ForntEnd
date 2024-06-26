@@ -59,10 +59,8 @@ export class StudentFormComponent implements OnInit {
 
   submitForm(): void {
     if (this.isEditMode) {
-      console.log('Update');
       this.updateStudent();
     } else {
-      console.log('Register');
       this.addStudent();
     }
   }
@@ -70,7 +68,6 @@ export class StudentFormComponent implements OnInit {
   addStudent(): void {
     console.log(this.studentForm.value);
     console.log('Http://=====> '+JSON.stringify( this.apiService.addStudent(this.studentForm.value)));
-    console.log(this.router.navigateByUrl('/students'));
     const formData = this.studentForm.value;
     if (this.studentForm.valid) {
       this.apiService.addStudent(formData).subscribe(() => {

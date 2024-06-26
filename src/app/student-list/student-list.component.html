@@ -20,9 +20,9 @@
             <td>{{ student.date_of_birth }}</td>
             <td>{{ student.class }}</td>
             <td>
-                <button class="btn btn-primary btn-sm mb-3" >View</button>&nbsp;
+                <button class="btn btn-primary btn-sm mb-3" (click)="getStudentById()">View</button>&nbsp;
                 <button class="btn btn-info btn-sm mb-3" >Edit</button>&nbsp;
-                <button class="btn btn-danger btn-sm mb-3">Delete</button>
+                <button class="btn btn-danger btn-sm mb-3" >Delete</button>
             </td>
         </tr>
         </tbody>
