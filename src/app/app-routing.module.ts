@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'students/:id', component: StudentDetailComponent },
   { path: 'add-student', component: StudentFormComponent },
   { path: 'edit-student/:id', component: StudentFormComponent },
+  { path: '**', redirectTo: '/students' }
 ];
 
 @NgModule({

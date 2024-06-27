@@ -40,4 +40,17 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
+  viewStudent(id: number): void {
+    console.log('Navigating to student with ID:', id); // Debugging line
+    // this.route.navigate(['/students', id]);
+    this.apiService.getStudentById(id).subscribe(
+      (data) => {
+        console.log(data);
+        this.studentDetail = data;
+      },
+      (error) => {
+        console.error('Error fetching student details: ', error);
+      }
+    );
+  }
 }
