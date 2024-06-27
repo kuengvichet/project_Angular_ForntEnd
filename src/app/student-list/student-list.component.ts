@@ -10,6 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentListComponent implements OnInit {
   students: any[] = [];
   studentDetail: any;
+  editMode = false;
+  showForm = false;
+  newStudent: any = {};
 
   constructor(private apiService: ApiService,private route:ActivatedRoute) { }
 
@@ -27,19 +30,19 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
-  getStudentById():void{
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
-    console.log(this.route.snapshot.url);
-    this.apiService.getStudentById(id).subscribe(
-      (data) => {
-        this.studentDetail = data;
-      },
-      (error) => {
-        console.error('Error fetching student details: ', error);
-      }
-    );
-  }
+  // getStudentById():void{
+  //   const id = Number(this.route.snapshot.paramMap.get('id'));
+  //   console.log(id);
+  //   console.log(this.route.snapshot.url);
+  //   this.apiService.getStudentById(id).subscribe(
+  //     (data) => {
+  //       this.studentDetail = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching student details: ', error);
+  //     }
+  //   );
+  // }
   viewStudent(id: number): void {
     console.log('Navigating to student with ID:', id); // Debugging line
     // this.route.navigate(['/students', id]);
@@ -70,4 +73,69 @@ export class StudentListComponent implements OnInit {
       );
     }
   }
+
+  selectStudent(student: any): void {
+    this.studentDetail = { ...student }; // Create a copy to prevent direct modification
+    this.editMode = false; // Reset edit mode
+  }
+
+  editStudent(student: any): void {
+    console.log(student);
+    this.selectStudent(student);
+    this.editMode = true;
+  }
+
+  cancelEdit(): void {
+    this.studentDetail = null;
+    this.editMode = false;
+  }
+
+  cancel(): void {
+    this.showForm = false; // Hide the registration form
+    this.newStudent = {}; // Clear the new student data
+  }
+
+  submitForm(): void {
+    if (this.editMode) {
+      this.apiService.updateStudent(this.studentDetail.id, this.studentDetail).subscribe(
+        () => {
+          // Update the UI or fetch students again
+          this.fetchStudents();
+          this.studentDetail = null;
+          this.editMode = false;
+        },
+        (error) => {
+          console.error('Error updating student: ', error);
+        }
+      );
+    } else {
+      this.apiService.addStudent(this.newStudent).subscribe(
+        () => {
+          // Handle success, like refreshing the list or navigating
+          this.fetchStudents(); // Example: Refresh student list after add
+          this.cancel(); // Hide the form after successful add
+        },
+        (error) => {
+          console.error('Error adding student: ', error);
+        }
+      );
+      // This block executes if we are in register (add new) mode
+      this.apiService.addStudent(this.studentDetail).subscribe(
+        () => {
+          // Handle success, like refreshing the list or navigating
+          this.fetchStudents(); // Example: Refresh student list after add
+          this.studentDetail = null; // Clear the form or selected student after add
+        },
+        (error) => {
+          console.error('Error adding student: ', error);
+        }
+      );
+    }
+  }
+
+  showRegistrationForm(): void {
+    this.newStudent = {}; // Clear any previous data
+    this.showForm = true; // Show the registration form
+  }
+
 }
