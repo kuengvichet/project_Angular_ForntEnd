@@ -38,7 +38,7 @@
 
 
 <h4>{{ editMode ? 'Edit Student' : '' }}</h4>
-<div *ngIf="studentDetail">
+<div *ngIf="studentDetail && editMode">
 
     <form (submit)="submitForm()">
         
@@ -95,7 +95,7 @@
         </tbody>
     </table>
     <!-- Student Details Section -->
-    <div *ngIf="studentDetail">
+    <div *ngIf="studentDetail && !editMode">
         <h2>Student Details</h2>
         <p>First Name:&nbsp;&nbsp; {{ studentDetail.first_name }}</p>
         <p>Last Name:&nbsp;&nbsp; {{ studentDetail.last_name }}</p>

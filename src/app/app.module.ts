@@ -9,8 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { StoreModule, provideStore } from '@ngrx/store';
 import { appReducer } from './app.state';
 import { StudentListComponent } from './student-list/student-list.component';
-import { StudentDetailComponent } from './student-detail/student-detail.component';
-import { StudentFormComponent } from './student-form/student-form.component';
+// import { StudentDetailComponent } from './student-detail/student-detail.component';
+// import { StudentFormComponent } from './student-form/student-form.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,8 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     StudentListComponent,
-    StudentDetailComponent,
-    StudentFormComponent
+    // StudentDetailComponent,
+    // StudentFormComponent
   ],
   imports: [
     BrowserModule,
