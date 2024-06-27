@@ -83,6 +83,7 @@ export class StudentListComponent implements OnInit {
     console.log(student);
     this.selectStudent(student);
     this.editMode = true;
+    this.showForm  = false;
   }
 
   cancelEdit(): void {
@@ -125,6 +126,7 @@ export class StudentListComponent implements OnInit {
   showRegistrationForm(): void {
     this.newStudent = {}; // Clear any previous data
     this.showForm = true; // Show the registration form
+    this.editMode = false;
+    this.studentDetail = false;
   }
-
 }
