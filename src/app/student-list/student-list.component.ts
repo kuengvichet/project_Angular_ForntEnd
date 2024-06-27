@@ -119,17 +119,6 @@ export class StudentListComponent implements OnInit {
           console.error('Error adding student: ', error);
         }
       );
-      // This block executes if we are in register (add new) mode
-      this.apiService.addStudent(this.studentDetail).subscribe(
-        () => {
-          // Handle success, like refreshing the list or navigating
-          this.fetchStudents(); // Example: Refresh student list after add
-          this.studentDetail = null; // Clear the form or selected student after add
-        },
-        (error) => {
-          console.error('Error adding student: ', error);
-        }
-      );
     }
   }
 
