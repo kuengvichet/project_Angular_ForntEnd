@@ -30,19 +30,7 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
-  // getStudentById():void{
-  //   const id = Number(this.route.snapshot.paramMap.get('id'));
-  //   console.log(id);
-  //   console.log(this.route.snapshot.url);
-  //   this.apiService.getStudentById(id).subscribe(
-  //     (data) => {
-  //       this.studentDetail = data;
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching student details: ', error);
-  //     }
-  //   );
-  // }
+
   viewStudent(id: number): void {
     console.log('Navigating to student with ID:', id); // Debugging line
     // this.route.navigate(['/students', id]);
@@ -56,6 +44,7 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
+  
   deleteStudent(id: number): void {
     if (confirm('Are you sure you want to delete this student?')) {
       this.apiService.deleteStudent(id).subscribe(
