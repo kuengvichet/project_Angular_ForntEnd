@@ -22,7 +22,7 @@
             <td>
                 <button class="btn btn-primary btn-sm mb-3" (click)="viewStudent(student.id)">View</button>&nbsp;
                 <button class="btn btn-info btn-sm mb-3" >Edit</button>&nbsp;
-                <button class="btn btn-danger btn-sm mb-3" >Delete</button>
+                <button class="btn btn-danger btn-sm mb-3" (click)="deleteStudent(student.id)">Delete</button>
             </td>
         </tr>
         </tbody>
@@ -30,11 +30,11 @@
     <!-- Student Details Section -->
     <div *ngIf="studentDetail">
         <h2>Student Details</h2>
-        <p>First Name: {{ studentDetail.first_name }}</p>
-        <p>Last Name: {{ studentDetail.last_name }}</p>
-        <p>Date of Birth: {{ studentDetail.date_of_birth }}</p>
-        <p>Class: {{ studentDetail.class }}</p>
-      </div>
+        <p>First Name:&nbsp;&nbsp; {{ studentDetail.first_name }}</p>
+        <p>Last Name:&nbsp;&nbsp; {{ studentDetail.last_name }}</p>
+        <p>Date of Birth:&nbsp;&nbsp; {{ studentDetail.date_of_birth }}</p>
+        <p>Class:&nbsp;&nbsp; {{ studentDetail.class }}</p>
+    </div>
 
 </div>
 

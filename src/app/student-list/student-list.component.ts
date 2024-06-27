@@ -53,4 +53,21 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
+  deleteStudent(id: number): void {
+    if (confirm('Are you sure you want to delete this student?')) {
+      this.apiService.deleteStudent(id).subscribe(
+        () => {
+          // Remove the deleted student from the students array
+          this.students = this.students.filter(student => student.id !== id);
+          // Clear the selected student if it was deleted
+          if (this.studentDetail && this.studentDetail.id === id) {
+            this.studentDetail = null;
+          }
+        },
+        (error) => {
+          console.error('Error deleting student: ', error);
+        }
+      );
+    }
+  }
 }
