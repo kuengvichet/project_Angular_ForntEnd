@@ -34,6 +34,8 @@ export class StudentListComponent implements OnInit {
   viewStudent(id: number): void {
     console.log('Navigating to student with ID:', id); // Debugging line
     // this.route.navigate(['/students', id]);
+    this.showForm = false;
+    this.editMode = false;
     this.apiService.getStudentById(id).subscribe(
       (data) => {
         console.log(data);
@@ -44,7 +46,7 @@ export class StudentListComponent implements OnInit {
       }
     );
   }
-  
+
   deleteStudent(id: number): void {
     if (confirm('Are you sure you want to delete this student?')) {
       this.apiService.deleteStudent(id).subscribe(
